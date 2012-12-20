@@ -74,6 +74,9 @@ module ActiveAdmin
     # Default CSV options
     inheritable_setting :csv_options, {}
 
+    # The authorization adapter to use
+    inheritable_setting :authorization_adapter, ActiveAdmin::AuthorizationAdapter
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     setting :display_name_methods, [ :display_name,
