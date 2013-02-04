@@ -48,7 +48,7 @@ module ActiveAdmin
           li_element.add_class "active" if current?(item)
           link_path = url_for_menu_item(item)
 
-          if item.children.any?
+          if item.items.any?
             li_element.add_class "dropdown"
 
             a :href => link_path, :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
@@ -67,6 +67,8 @@ module ActiveAdmin
         case menu_item.url
         when Symbol
           send(menu_item.url)
+        when Proc
+          menu_item.url.call(params)
         when nil
           "#"
         else
@@ -76,7 +78,7 @@ module ActiveAdmin
 
       def render_nested_menu(item)
         ul :class => "dropdown-menu" do
-          displayable_items(item.children).each do |child|
+          displayable_items(item.items).each do |child|
             build_menu_item child
           end
         end
@@ -88,7 +90,7 @@ module ActiveAdmin
 
       # Returns true if the menu item name is @current_tab (set in controller)
       def current?(menu_item)
-        assigns[:current_tab] == menu_item || menu_item.children.include?(assigns[:current_tab])
+        assigns[:current_tab] == menu_item || menu_item.items.include?(assigns[:current_tab])
       end
 
       # Returns an Array of items to display
@@ -107,7 +109,7 @@ module ActiveAdmin
 
       # Returns true if the item has any children that should be displayed
       def displayable_children?(item)
-        !item.children.find{|child| display_item?(child) }.nil?
+        !item.items.find{|child| display_item?(child) }.nil?
       end
     end
 

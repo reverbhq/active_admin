@@ -3,6 +3,7 @@ require 'active_admin/resource/controllers'
 require 'active_admin/resource/menu'
 require 'active_admin/resource/page_presenters'
 require 'active_admin/resource/pagination'
+require 'active_admin/resource/routes'
 require 'active_admin/resource/naming'
 require 'active_admin/resource/scopes'
 require 'active_admin/resource/sidebars'
@@ -77,6 +78,8 @@ module ActiveAdmin
     include Pagination
     include Scopes
     include Sidebars
+    include Menu
+    include Routes
 
     # The class this resource wraps. If you register the Post model, Resource#resource_class
     # will point to the Post class
@@ -101,20 +104,6 @@ module ActiveAdmin
       [route_prefix, controller.resources_configuration[:self][:route_instance_name], 'path'].compact.join('_').to_sym
     end
 
-    # Returns a symbol for the route to use to get to the
-    # collection of this resource
-    def route_collection_path
-      route = super
-
-      # Handle plural resources.
-      if controller.resources_configuration[:self][:route_collection_name] ==
-            controller.resources_configuration[:self][:route_instance_name]
-        route = route.to_s.gsub('_path', '_index_path').to_sym
-      end
-
-      route
-    end
-
     # Clears all the member actions this resource knows about
     def clear_member_actions!
       @member_actions = []
@@ -136,6 +125,7 @@ module ActiveAdmin
 
     def belongs_to(target, options = {})
       @belongs_to = Resource::BelongsTo.new(self, target, options)
+      self.menu_item_menu_name = target unless @belongs_to.optional?
       controller.belongs_to(target, options.dup)
     end
 
@@ -146,10 +136,6 @@ module ActiveAdmin
     # Do we belong to another resource
     def belongs_to?
       !belongs_to_config.nil?
-    end
-
-    def include_in_menu?
-      super && !(belongs_to? && !belongs_to_config.optional?)
     end
 
     # The csv builder for this resource
