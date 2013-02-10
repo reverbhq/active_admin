@@ -68,7 +68,7 @@ module ActiveAdmin
         when Symbol
           send(menu_item.url)
         when Proc
-          menu_item.url.call(params)
+          instance_exec &menu_item.url
         when nil
           "#"
         else
