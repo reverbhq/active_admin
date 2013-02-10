@@ -58,7 +58,7 @@ module ActiveAdmin
 
             render_nested_menu(item)
           else
-            link_to item.label, link_path
+            text_node(link_to(item.label, link_path))
           end
         end
       end
