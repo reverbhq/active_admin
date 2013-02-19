@@ -1,5 +1,5 @@
 jQuery ($) ->
-  $(".disabled").live 'click', ->
+  $(".disabled").on 'click', ->
     return false;
 
   #
