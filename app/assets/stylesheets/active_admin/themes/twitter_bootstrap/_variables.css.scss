@@ -1,0 +1,48 @@
+// Variables used throughout Active Admin.
+// They can be overridden by prepending your own
+// to 'app/assets/stylesheets/active_admin.css.scss'.
+
+// Sizes
+$horizontal-page-margin: 30px !default;
+$cell-padding: 5px 10px 3px 10px !default;
+$cell-horizontal-padding: 12px !default;
+$section-padding: 15px !default;
+$text-input-horizontal-padding: 10px !default;
+
+// Colors
+$blue: #38678B;
+$primary-color: #5E6469 !default;
+$tableBackgroundAccent: lighten($primary-color, 57%) !default;
+$secondary-color: #f0f0f0 !default;
+$secondary-gradient-start: #efefef !default;
+$secondary-gradient-stop: #dfe1e2 !default;
+$text-color: #323537 !default;
+$table-selected-color: #d9e4ec !default;
+$error-color: #932419 !default;
+$section-header-text-color: $primary-color !default;
+
+// Links
+$linkColor: $blue;
+
+// Navbar
+$navbarHeight: 39px;
+$navbarInverseBackground: darken($primary-color, 7%);
+$navbarInverseBackgroundHighlight: lighten($primary-color, 5%);
+$navbarInverseLinkBackgroundActive: darken($primary-color, 10%);
+$navbarInverseLinkBackgroundHover: darken($primary-color, 5%);
+$navbarInverseText: #AAAAAA;
+$navbarInverseLinkColor: #CDCDCD;
+
+// Typography
+$baseFontSize: 12px;
+$textColor: $text-color;
+$headingsColor: $primary-color;
+
+$btnBackground: #ffffff;
+$btnBackgroundHighlight: #E7E7E7;
+$btnPrimaryBackground: lighten($primary-color, 15%);
+$btnPrimaryBackgroundHighlight: darken($primary-color, 12%);
+$btnBorderRadius: 400px;
+
+// Drop Downs
+$dropdownLinkBackgroundHover: $primary-color;

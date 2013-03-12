@@ -14,3 +14,19 @@
     }
   }
 }
+
+.action_items {
+  text-align:right;
+  margin-top:10px;
+  a {
+    color:$primary-color;
+    font-size:1em;
+    padding: 10px 12px 10px;
+    span.icon { vertical-align: bottom; margin-right: 4px;} 
+    margin: 0px;
+    
+    &:hover{
+      @include icon-color(#000);
+    }
+  }
+}

@@ -1,15 +1,13 @@
 // Typography
 $baseFontSize: 12px !default;
 
-@import "active_admin/mixins/variables";
+@import "twitter_bootstrap/variables";
+@import "twitter_bootstrap/mixins/all";
 @import "bootstrap";
 
 body.active_admin {
   padding-top: $navbarHeight + 20;
   padding-bottom: 40px;
-
-  #titlebar_left { float: left; }
-  #titlebar_right { float: right; }
 
   // -------------------------------------- Sidebar Filter Forms
   $sidebar-inner-content-width: 270px - ($section-padding * 2);

@@ -1,0 +1,3 @@
+@mixin secondary-gradient { 
+  @include gradient-vertical($secondary-gradient-start, $secondary-gradient-stop);
+}

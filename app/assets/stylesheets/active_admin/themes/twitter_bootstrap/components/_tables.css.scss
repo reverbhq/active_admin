@@ -22,8 +22,8 @@ table.index_table {
 //     text-transform: uppercase;
 //     border-bottom: 1px solid #ccc;
 //   }
-//   tr.odd td { background: darken($table-stripe-color, 3%); }
-//   tr.even td { background: $table-stripe-color; }
+//   tr.odd td { background: darken($tableBackgroundAccent, 3%); }
+//   tr.even td { background: $tableBackgroundAccent; }
 // }
 
 // -------------------------------------- resource attributes table 
