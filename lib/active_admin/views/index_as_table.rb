@@ -69,10 +69,20 @@ module ActiveAdmin
     # If a column is defined using a block, you must pass the key to turn on sorting. The key
     # is the attribute which gets used to sort objects using Active Record.
     #
+    # By default, this is the column on the resource's table that the attribute corresponds to. 
+    # Otherwise, any attribute that the resource collection responds to can be used.
+    #
     #     index do
     #       column "Title", :sortable => :title do |post|
     #         link_to post.title, admin_post_path(post)
     #       end
+    #     end
+    #
+    # You can also sort using an attribute on another table by passing the table name
+    # and the attribute separated by a dot:
+    #
+    #     index do
+    #       column :title, :sortable => 'categories.name'
     #     end
     #
     # You can turn off sorting on any column by passing false:
@@ -99,7 +109,7 @@ module ActiveAdmin
 
       def build(page_presenter, collection)
         table_options = {
-          :id => active_admin_config.resource_name.plural,
+          :id => "index_table_#{active_admin_config.resource_name.plural}",
           :sortable => true,
           :class => "index_table index table-bordered",
           :i18n => active_admin_config.resource_class,
@@ -145,26 +155,50 @@ module ActiveAdmin
           end
         end
 
-        # Adds links to View, Edit and Delete
-        def default_actions(options = {})
+        # Add links to perform actions.
+        #
+        #   # Add default links.
+        #   actions
+        #
+        #   # Append some actions onto the end of the default actions.
+        #   actions do |admin_user|
+        #     link_to 'Grant Admin', grant_admin_admin_user_path(admin_user)
+        #   end
+        #
+        #   # Custom actions without the defaults.
+        #   actions :defaults => false do |admin_user|
+        #     link_to 'Grant Admin', grant_admin_admin_user_path(admin_user)
+        #   end
+        def actions(options = {}, &block)
           options = {
-            :name => ""
+            :name => "",
+            :defaults => true
           }.merge(options)
           column options[:name] do |resource|
-            links = []
-            if controller.action_methods.include?('show')
+            text_node default_actions(resource) if options[:defaults]
+            text_node instance_exec(resource, &block) if block_given?
+          end
+        end
+
+        def default_actions(*args)
+          links = proc do |resource|
+            links = ''.html_safe
+            if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
               links << link_to(I18n.t('active_admin.view'), resource_path(resource), :class => "member_link view_link")
             end
-
-            if controller.action_methods.include?('edit')
+            if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
               links << link_to(I18n.t('active_admin.edit'), edit_resource_path(resource), :class => "member_link edit_link")
             end
-
-            if controller.action_methods.include?('destroy')
+            if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
               links << link_to(I18n.t('active_admin.delete'), resource_path(resource), :method => :delete, :data => {:confirm => I18n.t('active_admin.delete_confirmation')}, :class => "member_link delete_link")
             end
+          end
 
-            links.join(" ").html_safe
+          options = args.extract_options!
+          if options.present? || args.empty?
+            actions options
+          else
+            links.call(args.first)
           end
         end
 

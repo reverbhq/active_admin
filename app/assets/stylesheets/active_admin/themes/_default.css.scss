@@ -17,9 +17,4 @@ body.active_admin {
   @import "active_admin/themes/default/components/index_tables";
   @import "active_admin/themes/default/components/pagination";
 
-  a.member_link {
-    margin-right: 7px;
-    white-space: nowrap;
-  }
-
 }

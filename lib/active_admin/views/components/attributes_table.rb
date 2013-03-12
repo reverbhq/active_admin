@@ -13,9 +13,7 @@ module ActiveAdmin
       def build(record, *attrs)
         @record = record
         super(:for => @record)
-
-        add_class "table"
-
+        @table = table
         rows(*attrs)
       end
 
@@ -23,13 +21,16 @@ module ActiveAdmin
         attrs.each {|attr| row(attr) }
       end
 
-      def row(attr, &block)
-        tr do
+      def row(*args, &block)
+        title   = args[0]
+        options = args.extract_options!
+        options[:class] ||= :row
+        @table << tr(options) do
           th do
-            header_content_for(attr)
+            header_content_for(title)
           end
           td do
-            content_for(block || attr)
+            content_for(block || title)
           end
         end
       end

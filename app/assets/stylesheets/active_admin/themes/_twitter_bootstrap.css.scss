@@ -51,6 +51,11 @@ body.active_admin {
   @import "active_admin/themes/twitter_bootstrap/components/comments";
   @import "active_admin/themes/twitter_bootstrap/pages/logged_out";
 
+  a.member_link {
+    margin-right: 7px;
+    white-space: nowrap;
+  }
+
   form.filter_form {
     .filter_form_field {
       margin-bottom: 10px;

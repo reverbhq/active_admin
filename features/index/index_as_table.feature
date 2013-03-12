@@ -11,6 +11,7 @@ Feature: Index as Table
     When I am on the index page for posts
     Then I should see a sortable table header with "Id"
     And I should see a sortable table header with "Title"
+    And I should see a table with id "index_table_posts"
 
   Scenario: Viewing the default table with a resource
     Given a post with the title "Hello World" exists
@@ -92,6 +93,46 @@ Feature: Index as Table
     And I should see a member link to "Edit"
     And I should not see a member link to "Delete"
 
+  Scenario: Actions with defaults and custom actions
+    Given a post with the title "Hello World" and body "From the body" exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        actions :index, :show, :edit, :update
+
+        index do
+          column :category
+          actions do |resource|
+            link_to 'Custom Action', edit_admin_post_path(resource), :class => 'member_link'
+          end
+        end
+      end
+      """
+    Then I should see a member link to "View"
+    And I should see a member link to "Edit"
+    And I should not see a member link to "Delete"
+    And I should see a member link to "Custom Action"
+
+  Scenario: Actions without default actions
+    Given a post with the title "Hello World" and body "From the body" exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        actions :index, :show, :edit, :update
+
+        index do
+          column :category
+          actions :defaults => false do |resource|
+            link_to 'Custom Action', edit_admin_post_path(resource), :class => 'member_link'
+          end
+        end
+      end
+      """
+    Then I should not see a member link to "View"
+    And I should not see a member link to "Edit"
+    And I should not see a member link to "Delete"
+    And I should see a member link to "Custom Action"
+
   Scenario: Associations are not sortable
     Given 1 post exists
     And an index configuration of:
@@ -112,12 +153,43 @@ Feature: Index as Table
       ActiveAdmin.register Post
       """
     When I am on the index page for posts
-    Then I should see the "posts" table:
+    Then I should see the "index_table_posts" table:
       | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
       | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | View Edit Delete |
       | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | View Edit Delete |
     When I follow "Id"
-    Then I should see the "posts" table:
+    Then I should see the "index_table_posts" table:
       | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
       | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | View Edit Delete |
       | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | View Edit Delete |
+
+  Scenario: Sorting by a virtual column
+    Given a post with the title "Hello World" exists
+    And a post with the title "Bye bye world" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          controller do
+            def scoped_collection
+              Post.select("id, title, length(title) as title_length")
+            end
+          end
+
+          index do
+            column :id
+            column :title
+            column("Title Length", :sortable => :title_length) { |post| post.title_length }
+          end
+        end
+      """
+    When I am on the index page for posts
+    And I follow "Title Length"
+    Then I should see the "index_table_posts" table:
+      | Id | Title        | Title Length |
+      | 2 | Bye bye world | 13 |
+      | 1 | Hello World   | 11 |    
+    When I follow "Title Length"
+    Then I should see the "index_table_posts" table:
+      | Id | Title        | Title Length |
+      | 1 | Hello World   | 11 |
+      | 2 | Bye bye world | 13 |
