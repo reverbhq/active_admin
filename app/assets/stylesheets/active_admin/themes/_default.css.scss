@@ -2,6 +2,8 @@
 @import "active_admin/themes/default/mixins/all";
 @import "active_admin/themes/twitter_bootstrap";
 
+@import "active_admin/themes/default/pages/logged_out";
+
 body.active_admin {
   padding-top: 39px;
 

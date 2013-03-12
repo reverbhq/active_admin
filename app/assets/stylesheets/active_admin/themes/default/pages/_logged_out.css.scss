@@ -1,0 +1,14 @@
+#login {
+  
+  &.hero-unit {
+
+    @include box-shadow(0 1px 3px rgba(0,0,0,0.3));
+    @include border-radius(0px);
+
+    h2 {
+      @include text-shadow(#fff);
+    }
+
+  }
+
+}

@@ -1,6 +1,53 @@
-&.logged_out {
-  #content_wrapper{
-    width: 700px;
-    margin: 70px auto;
+#login {
+
+  &.hero-unit {
+    padding:30px 60px;
+  }
+
+  form {
+    margin:0px;
+  }
+
+  fieldset.inputs {
+    padding:0px;
+    margin:0px;
+    li {
+      margin-bottom:0px;
+    }
+  }
+
+  fieldset.actions {
+    margin:0px;
+    background:none;
+    border:none;
+    ol {
+      margin-left:0px;
+      li {
+        margin:0px;
+      }
+    }
+  }
+
+  .formtastic fieldset.inputs > ol > li.input {
+
+    label.label {
+      text-align:left;
+      width:100%;
+      float:none;
+      abbr {
+        position:relative;
+        right:0px;
+      }
+    }
+
+    &.boolean.input {
+
+      display:block;
+
+      input[type='checkbox'] {
+        margin-left:0px;
+      }
+    }
+
   }
 }
