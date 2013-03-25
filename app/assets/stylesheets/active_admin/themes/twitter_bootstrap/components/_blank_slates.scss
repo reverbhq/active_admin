@@ -3,7 +3,7 @@
   text-align: center;
   
   .blank_slate {
-    @include rounded;
+    @include border-radius(5px);
     -webkit-font-smoothing: antialiased;
     border: 1px dashed #DADADA;
     color: #AAA;

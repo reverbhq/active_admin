@@ -4,8 +4,7 @@
   .active_admin_comment {
     clear: both;
     margin-top: 10px;
-    margin-bottom: 40px;
-    max-width: 700px;
+    margin-bottom: 20px;
 
     .active_admin_comment_meta {
       width: 130px;
@@ -30,6 +29,9 @@
     .inputs {
       margin:0 0 0 150px;
       .hidden {display:none;}
+      #active_admin_comment_body {
+        width:76%;
+      }
     }
     .actions {
       margin:0;

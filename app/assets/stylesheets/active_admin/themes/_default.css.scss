@@ -18,5 +18,7 @@ body.active_admin {
   @import "active_admin/themes/default/components/batch_actions";
   @import "active_admin/themes/default/components/filter_forms";
   @import "active_admin/themes/default/components/pagination";
+  @import "active_admin/themes/default/components/status_tags";
+  @import "active_admin/themes/default/components/date_picker";
 
 }
