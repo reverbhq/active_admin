@@ -14,27 +14,46 @@ table.index_table {
 
 // --------- Tables inside Panels
 
-// .panel_contents table {
-//   margin-top: 5px;
-//   th { 
-//     padding-top: 10px;
-//     background: none;
-//     color: $primary-color;
-//     text-transform: uppercase;
-//     border-bottom: 1px solid #ccc;
-//   }
-//   tr.odd td { background: darken($tableBackgroundAccent, 3%); }
-//   tr.even td { background: $tableBackgroundAccent; }
-// }
+.panel_contents table {
+  margin-top: 5px;
+  th { 
+    padding-top: 10px;
+    background: none;
+    color: $primary-color;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ccc;
+  }
+  tr.odd td { background: darken($tableBackgroundAccent, 3%); }
+  tr.even td { background: $tableBackgroundAccent; }
+}
 
 // -------------------------------------- resource attributes table 
 .attributes_table { 
   overflow: hidden; 
 
-  .empty {
-    color: #bbb;
-    font-size: 0.8em;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
+  table {
+    th, td {
+      padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
+      vertical-align: top;
+      border-bottom: 1px solid #e8e8e8; 
+    }
+    th {
+      @include text-shadow(#ffffff);
+      width: 150px;
+      font-size: 0.85em;
+      padding-left: 0;
+      text-transform: uppercase;
+      color: $primary-color;
+      @include text-shadow;
+      text-align:left;
+    }
+    td {
+      .empty {
+        color: #bbb;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+      }
+    }
   }
 }

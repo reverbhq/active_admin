@@ -6,10 +6,6 @@ module ActiveAdmin
 
       attr_reader :resource
 
-      def tag_name
-        'table'
-      end
-
       def build(record, *attrs)
         @record = record
         super(:for => @record)
