@@ -45,4 +45,5 @@ $btnPrimaryBackgroundHighlight: darken($primary-color, 12%);
 $btnBorderRadius: 400px;
 
 // Drop Downs
-$dropdownLinkBackgroundHover: $primary-color;
+$dropdownLinkBackgroundHover: $linkColor;
+$dropdownLinkColor: $linkColor;
