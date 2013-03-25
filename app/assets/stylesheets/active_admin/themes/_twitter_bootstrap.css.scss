@@ -6,49 +6,19 @@ $baseFontSize: 12px !default;
 @import "bootstrap";
 
 body.active_admin {
+
   padding-top: $navbarHeight + 20;
   padding-bottom: 40px;
 
-  // -------------------------------------- Sidebar Filter Forms
-  $sidebar-inner-content-width: 270px - ($section-padding * 2);
-  $filter-field-seperator-width: 12px;
-
-  $side-by-side-filter-input-width: ($sidebar-inner-content-width / 2) - ($text-input-horizontal-padding * 2) - $filter-field-seperator-width;
-  $side-by-side-filter-select-width: ($sidebar-inner-content-width / 2) - $filter-field-seperator-width;
-
-  $date-range-filter-input-right-padding: 27px;
-  $date-range-filter-input-horizontal-padding: $date-range-filter-input-right-padding + $text-input-horizontal-padding;
-  $date-range-filter-input-width: ($sidebar-inner-content-width / 2) - $filter-field-seperator-width - $date-range-filter-input-horizontal-padding;
-
-  .sidebar_section {
-
-    label.label {
-      display: block;
-      position: relative;
-      margin: 0;
-      padding: 0;
-      text-shadow: none;
-      background-color: transparent;
-
-      color: $grayDark;
-
-      @include font-shorthand($baseFontSize, normal, $baseLineHeight);
-    }
-
-    select { width: $sidebar-inner-content-width; }
-
-    input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
-      width: $sidebar-inner-content-width - ($text-input-horizontal-padding * 2);
-    }
-
-  }
-
   @import "active_admin/themes/twitter_bootstrap/header";
+  @import "active_admin/themes/twitter_bootstrap/components/batch_actions";
   @import "active_admin/themes/twitter_bootstrap/components/tables";
   @import "active_admin/themes/twitter_bootstrap/components/datepicker";
   @import "active_admin/themes/twitter_bootstrap/components/scopes";
   @import "active_admin/themes/twitter_bootstrap/components/status_tags";
   @import "active_admin/themes/twitter_bootstrap/components/comments";
+  @import "active_admin/themes/twitter_bootstrap/components/index_as_grid";
+  @import "active_admin/themes/twitter_bootstrap/components/filter_forms";
   @import "active_admin/themes/twitter_bootstrap/pages/logged_out";
 
   a.member_link {
@@ -56,47 +26,6 @@ body.active_admin {
     white-space: nowrap;
   }
 
-  form.filter_form {
-    .filter_form_field {
-      margin-bottom: 10px;
-      clear: both;
-
-      &.filter_numeric {
-        input[type=text] {
-          margin-left: $filter-field-seperator-width + 4;
-          width: $side-by-side-filter-input-width;
-        }
-        select {
-          width: $side-by-side-filter-select-width;
-        }
-      }
-
-      &.filter_check_boxes {
-        label { margin-bottom: 3px; }
-        .check_boxes_wrapper label { 
-          font-weight: normal; 
-          margin-bottom: 3px;
-          text-transform: none;
-          font-size: 1.0em;
-          input { vertical-align: baseline; }
-        }
-      }
-
-      &.filter_date_range {
-        .seperator {
-          display: inline-block;
-          text-align: center;
-          width: $filter-field-seperator-width;
-        }
-
-        input[type=text] {
-          background: #fff url(active_admin_image_path('datepicker/datepicker-input-icon.png')) no-repeat 100% 7px;
-          padding-right: $date-range-filter-input-right-padding;
-          width: $date-range-filter-input-width;
-        }
-      }
-    }
-  }
 }
 
 @import "formtastic-plus-bootstrap";

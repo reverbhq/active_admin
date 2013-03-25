@@ -1,0 +1,9 @@
+form.filter_form {
+  .filter_form_field {
+    &.filter_date_range {
+      input[type=text] {
+        width: 33%;
+      }
+    }
+  }
+}
