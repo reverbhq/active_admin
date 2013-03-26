@@ -200,6 +200,13 @@ module ActiveAdmin
           else
             links.call(args.first)
           end
+
+          options = args.extract_options!
+          if options.present? || args.empty?
+            actions options
+          else
+            links.call(args.first)
+          end
         end
 
         # Display A Status Tag Column

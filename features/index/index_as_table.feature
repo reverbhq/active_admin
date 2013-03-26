@@ -160,8 +160,8 @@ Feature: Index as Table
     When I follow "Id"
     Then I should see the "index_table_posts" table:
       | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
-      | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | View Edit Delete |
-      | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | View Edit Delete |
+      | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | ViewEditDelete |
 
   Scenario: Sorting by a virtual column
     Given a post with the title "Hello World" exists

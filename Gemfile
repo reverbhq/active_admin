@@ -24,27 +24,27 @@ else
 end
 
 group :development, :test do
-  gem 'sqlite3'
-
-  gem 'rake',           '~> 10.0.2', :require => false
-  gem 'haml',           '~> 3.1.7', :require => false
-  gem 'yard'
-  gem 'rdiscount' # For yard
+  gem 'haml', '~> 3.1.7',  :require => false
+  gem 'rake', '~> 10.0.2', :require => false
+  gem 'rails-i18n' # Provides default i18n for many languages
+  gem 'rdiscount'  # Markdown implementation (for yard)
   gem 'sprockets'
-  gem 'rails-i18n' # Gives us default i18n for many languages
+  gem 'yard'
   gem 'parallel_tests'
 end
 
 group :test do
-  gem 'rspec-rails',    '~> 2.9.0'
-  gem 'cucumber-rails', '1.3.0', :require => false
-  gem 'capybara',       '1.1.2'
-  gem 'database_cleaner'
-  gem 'shoulda-matchers'
-  gem 'launchy'
-  gem 'jslint_on_rails',    '~> 1.1.1'
-  gem 'guard-rspec'
-  gem "guard-coffeescript"
-  gem 'jasmine'
   gem 'cancan'
+  gem 'capybara',        '1.1.2'
+  gem 'cucumber-rails',  '1.3.0', :require => false
+  gem 'database_cleaner'
+  gem 'guard-coffeescript'
+  gem 'guard-rspec'
+  gem 'jasmine'
+  gem 'jslint_on_rails', '~> 1.1.1'
+  gem 'launchy'
+  gem 'parallel_tests'
+  gem 'rspec-rails',     '~> 2.9.0'
+  gem 'shoulda-matchers', '1.5.0' # See active_admin#2004
+  gem 'sqlite3'
 end
