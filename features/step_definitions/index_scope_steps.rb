@@ -16,12 +16,12 @@ Then /^I should see the scope "([^"]*)" not selected$/ do |name|
 end
 
 Then /^I should see the scope "([^"]*)" with the count (\d+)$/ do |name, count|
-  step %{I should see "#{count}" within ".scopes .#{name.gsub(" ", "").underscore.downcase} .count"}
+  step %{I should see "#{count}" within ".scopes .scope-#{name.gsub(" ", "").underscore.downcase} .count"}
 end
 
 Then /^I should see the scope "([^"]*)" with no count$/ do |name|
-  page.should have_css(".scopes .#{name.gsub(" ", "").underscore.downcase}")
-  page.should_not have_css(".scopes .#{name.gsub(" ", "").underscore.downcase} .count")
+  page.should have_css(".scopes .scope-#{name.gsub(" ", "").underscore.downcase}")
+  page.should_not have_css(".scopes .scope-#{name.gsub(" ", "").underscore.downcase} .count")
 end
 
 Then /^I should see (\d+) ([\w]*) in the table$/ do |count, resource_type|

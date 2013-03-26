@@ -182,7 +182,7 @@ module ActiveAdmin
 
         def default_actions(*args)
           links = proc do |resource|
-            links = ''.html_safe
+            links = []
             if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
               links << link_to(I18n.t('active_admin.view'), resource_path(resource), :class => "member_link view_link")
             end
@@ -192,6 +192,7 @@ module ActiveAdmin
             if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
               links << link_to(I18n.t('active_admin.delete'), resource_path(resource), :method => :delete, :data => {:confirm => I18n.t('active_admin.delete_confirmation')}, :class => "member_link delete_link")
             end
+            links.join(' ').html_safe
           end
 
           options = args.extract_options!
@@ -201,12 +202,6 @@ module ActiveAdmin
             links.call(args.first)
           end
 
-          options = args.extract_options!
-          if options.present? || args.empty?
-            actions options
-          else
-            links.call(args.first)
-          end
         end
 
         # Display A Status Tag Column
