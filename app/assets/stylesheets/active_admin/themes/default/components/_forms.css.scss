@@ -1,0 +1,119 @@
+.formtastic {
+
+  fieldset.inputs { 
+    border: 0; 
+    padding: 10px 0;
+    margin-bottom: 20px;
+    @include section-background;
+
+    > legend {
+      width: 100%;
+      border-bottom:none;
+      margin-bottom:0px;
+
+      span { 
+        display: block; 
+        @include section-header; 
+        font-size:12px;
+      }
+    }
+
+    > ol > li.input {
+
+      label {
+        @include form-label-defaults;
+
+        &.label {
+          width: $form-item-left-gutter;
+        }
+      }
+
+      > p.inline-hints {
+        margin-left: $form-item-left-gutter;
+        padding-left:20px;
+      }
+
+      &.stringish {
+        input[type='text'], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel] {
+          width: 76%;
+        }
+      }
+
+      &.text textarea {
+        width:76%;
+      }
+
+      &.select select {
+        width:77%;
+      }
+
+      &.boolean {
+        label { margin-left: $form-item-left-gutter; }
+        input[type='checkbox'] {
+          margin-left:0px;
+        }
+      }
+
+      &.datetime_select {
+        fieldset.fragments {
+
+          > legend.label {
+            width: $form-item-left-gutter;
+
+            label {
+              @include form-label-defaults;
+            }
+          }
+
+          > ol.fragments-group {
+            margin-left:18%;
+
+            > li.fragment > label {
+              display:none;
+            }
+          }
+
+        }
+      }
+
+    }
+
+    .has_many {
+
+      h3 {
+        font-size:1.2em;
+        padding-left:20px;
+      }
+
+      a.button {
+        margin-left:20px;
+      }
+
+      fieldset.has_many_fields {
+        background:lighten(#f4f4f4, 2%);
+
+        > ol > li.input.boolean label {
+          padding-left:40px;
+        }
+
+        a.button {
+          padding-bottom:0px;
+        }
+
+      }
+
+    }
+
+  }
+
+  fieldset.actions {
+    background:none;
+    border:none;
+
+    ol {
+      margin-left:0px;
+    }   
+
+  }
+
+}
