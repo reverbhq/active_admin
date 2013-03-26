@@ -59,8 +59,8 @@ module ActiveAdmin
 
             actual_item_link item do |label, url|
               a :href => url, :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
-                label
-                b :class => :caret
+                text_node(label) +
+                b(:class => :caret)
               end
             end
 
