@@ -9,6 +9,29 @@
       @include text-shadow(#fff);
     }
 
+    fieldset.inputs {
+      border:none;
+      @include box-shadow(none);
+      background:inherit;
+
+
+       > ol > li.input {
+
+        &.boolean {
+          > label { 
+            padding-left:0px;
+            margin-left:0px;
+          }
+        }
+
+        label.label {
+          padding-left:0px;
+        }
+
+      }
+
+    }
+
   }
 
 }
