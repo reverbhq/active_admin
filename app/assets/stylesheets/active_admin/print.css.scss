@@ -4,6 +4,8 @@
 $primary-color: black;
 $text-color: black;
 
+@import "active_admin/themes/default";
+
 body.active_admin {
 
   font-family: Helvetica, Arial, sans-serif;
@@ -27,26 +29,38 @@ body.active_admin {
 
   // Header
   #header {
-    float: left;
+
+    .navbar-inner {
+      border:none;
+    }
+
+    &.navbar-fixed-top {
+      position:relative;
+    }
 
     #tabs, .tabs, #utility_nav {
       display: none;
     }
 
-    h1{
+    #site_title {
       font-weight: bold;
+      padding-left:0px;
+      margin-left:0px;
     }
+
   }
 
-  .flashes {
+  .flashes, .alert {
     display: none;
   }
 
   #title_bar {
-    float: right;
+    border:none;
+    @include box-shadow(none);
+    padding:0px;
 
     h2 {
-      line-height: 2em;
+      line-height: 1.5em;
       margin: 0;
     }
 
@@ -57,10 +71,11 @@ body.active_admin {
 
   // Content
   #active_admin_content {
-    border-top: thick solid black;
     clear: both;
-    margin-top: 2em;
-    padding-top: 3em;
+  }
+
+  .container-fluid {
+    padding:0px;
   }
 
   // Footer
@@ -70,36 +85,38 @@ body.active_admin {
 
   // Tables
   .table_tools {
-    ul {
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
 
-      li {
-        display: none;
-        padding: 0;
-        margin-bottom: 1em;
+    #batch_actions_selector {
+      display:none;
+    }
 
-        &.scope.selected {
-          display: block;
+    .scopes {
+      margin-left:0px;
+      padding:0px;
+    }
 
-          &:before {
-            content: "Showing ";
-          }
+    .scope {
+      display:none;
 
-          a {
-            font-weight: bold;
-          }
+      &.active {
+        display:block;
+        border:none;
+        @include box-shadow(none);
+        padding:0px;
 
-          span {
-            display: inline-block;
-            font-weight: normal;
-            font-size: .9em;
-          }
+        &:before {
+          content: "Showing ";
+        }
+
+        small {
+          display: inline-block;
+          font-weight: normal;
+          font-size: .9em;
         }
       }
 
     }
+
   }
 
   table {
@@ -202,10 +219,8 @@ body.active_admin {
 
   // Attribute Tables
   .attributes_table {
-    border-top: medium solid black;
 
     th {
-      border-bottom: thin solid black;
       vertical-align: top;
 
       &:after {
@@ -228,50 +243,17 @@ body.active_admin {
 
   // Forms
   form {
-    fieldset {
-      border-top: thick solid #ccc;
-      padding-top: 2em;
-      margin-bottom: 2em;
-
-      &:last-child {
-        border-bottom: none;
-      }
-    }
-
-    .buttons, abbr {
+    .buttons, .actions, abbr {
       display: none;
     }
-    ol {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
 
-      li{
-        border-top: thin solid black;
-        margin: 0;
-        padding: 1em 0;
-        overflow: hidden;
+    ol > li {
+      &.password, &.hidden {
+        display:none;
+      }
 
-        &.password, &.hidden {
-          display: none;
-        }
-
-        label {
-          font-weight: bold;
-          float: left;
-          width: 20%;
-        }
-
-        input, textarea, select {
-          background: none;
-          border: 0;
-          font: Arial, Helvetica, sans-serif;
-        }
-
-        input[type=file] {
-          display: none;
-        }
-
+      input[type=file] {
+        display:none;
       }
     }
   }

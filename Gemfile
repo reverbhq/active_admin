@@ -10,7 +10,7 @@ rails_version = detect_rails_version
 gem 'rails', rails_version
 gem 'bourbon'
 gem 'bootstrap-sass'
-gem 'formtastic-plus-bootstrap'
+gem 'formtastic-plus-bootstrap', ">= 1.1.7"
 
 case rails_version
 when /^3\.0/

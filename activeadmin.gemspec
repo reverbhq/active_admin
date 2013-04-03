@@ -30,5 +30,5 @@ Gem::Specification.new do |s|
   s.add_dependency("fastercsv", ">= 0")
   s.add_dependency("arbre", ">= 1.0.1")
   s.add_dependency("bootstrap-sass", "~> 2.3")
-  s.add_dependency("formtastic-plus-bootstrap", "~> 1.1")
+  s.add_dependency("formtastic-plus-bootstrap", ">= 1.1.7")
 end
