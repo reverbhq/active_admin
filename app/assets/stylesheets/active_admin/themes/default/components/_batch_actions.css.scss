@@ -1,0 +1,24 @@
+.table_tools {
+  .scopes.btn-group {
+
+    > .btn {
+      font-size:10px;  
+      padding: 0px 8px;
+      color:$primary-color;
+      @include text-shadow(#ffffff);
+      font-weight:bold;
+
+      small {
+        @include text-shadow(none);
+      }
+    }
+
+  }
+
+}
+
+#batch_actions_selector > a {
+  font-weight:bold;
+  color:$primary-color;
+  @include text-shadow(#ffffff);
+}

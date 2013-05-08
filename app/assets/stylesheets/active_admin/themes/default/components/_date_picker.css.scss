@@ -1,0 +1,6 @@
+.datepicker td.active {
+  @include gradient-vertical(lighten($linkColor, 15%), $linkColor);
+  &:hover {
+    @include gradient-vertical(lighten($linkColor, 25%), lighten($linkColor, 5%));
+  }
+}

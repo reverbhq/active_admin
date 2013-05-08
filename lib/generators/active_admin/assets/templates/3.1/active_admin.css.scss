@@ -1,15 +1,14 @@
 // SASS variable overrides must be declared before loading up Active Admin's styles.
 //
 // To view the variables that Active Admin provides, take a look at
-// `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
-// Active Admin source.
+// `app/assets/stylesheets/active_admin/themes/twitter_bootstrap/_variables.css.scss` in the
+// Active Admin source.  You can use any variables provided by Bootstrap itself as well.
 //
-// For example, to change the sidebar width:
-// $sidebar-width: 242px;
+// For example, to change the link color:
+// $linkColor: #000000;
 
 // Active Admin's got SASS!
-@import "active_admin/mixins";
-@import "active_admin/base";
+@import "active_admin/themes/default";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:

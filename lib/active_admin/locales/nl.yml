@@ -3,7 +3,7 @@ nl:
     dashboard: Dashboard
     dashboard_welcome:
       welcome: "Welkom bij Active Admin. Dit is de standaard dashboard pagina"
-      call_to_action: "Pas je eigen dashboard aan in het bestand 'app/admin/dashboards.rb'"
+      call_to_action: "Pas je eigen dashboard aan in het bestand 'app/admin/dashboard.rb'"
     view: "Bekijk"
     edit: "Wijzig"
     delete: "Verwijder"
@@ -29,7 +29,7 @@ nl:
     less_than: "Kleiner dan"
     main_content: "Implementeer %{model}#main_content om de content weer te geven."
     logout: "Uitloggen"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: "Mogelijk gemaakt door %{active_admin} %{version}"
     sidebars:
       filters: "Filters"
     pagination:

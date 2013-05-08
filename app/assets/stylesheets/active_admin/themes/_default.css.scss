@@ -1,0 +1,25 @@
+@import "active_admin/themes/default/variables";
+@import "active_admin/themes/default/mixins/all";
+@import "active_admin/themes/twitter_bootstrap";
+
+@import "active_admin/themes/default/pages/logged_out";
+
+body.active_admin {
+  padding-top: 39px;
+
+  .container-fluid {
+    padding-left: $horizontal-page-margin;
+    padding-right: $horizontal-page-margin;
+  }
+
+  @import "active_admin/themes/default/components/panels";
+  @import "active_admin/themes/default/components/title_bar";
+  @import "active_admin/themes/default/components/index_tables";
+  @import "active_admin/themes/default/components/batch_actions";
+  @import "active_admin/themes/default/components/filter_forms";
+  @import "active_admin/themes/default/components/pagination";
+  @import "active_admin/themes/default/components/status_tags";
+  @import "active_admin/themes/default/components/date_picker";
+  @import "active_admin/themes/default/components/forms";
+
+}

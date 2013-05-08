@@ -52,7 +52,7 @@ describe ActiveAdmin::Views::AttributesTable do
       context context_title do
         let(:table) { instance_eval &table_decleration }
 
-        it "should render a div wrapper with the class '.attributes_table'" do
+        it "should render a div with the class '.attributes_table'" do
           table.tag_name.should == 'div'
           table.attr(:class).should include('attributes_table')
         end
@@ -89,6 +89,17 @@ describe ActiveAdmin::Views::AttributesTable do
 
       end
     end # describe dsl styles
+
+    it "should allow html options for the row itself" do
+      table = render_arbre_component(assigns) {
+        attributes_table_for(post) do
+          row("Wee", :class => "custom_row", :style => "custom_style") { }
+        end
+      }
+      table.find_by_tag("tr").first.to_s.
+        split("\n").first.lstrip.
+          should == '<tr class="custom_row" style="custom_style">'
+    end
 
     it "should allow html content inside the attributes table" do
       table = render_arbre_component(assigns) {

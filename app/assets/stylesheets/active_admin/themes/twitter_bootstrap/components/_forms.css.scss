@@ -1,0 +1,26 @@
+.formtastic {
+    
+  fieldset.inputs { 
+
+    .has_many fieldset.has_many_fields {
+      border:1px solid $secondary-color;
+
+      > ol > li.input label.label {
+        margin-left:20px;
+      }
+
+      a.button {
+        margin-left:20px;
+        padding-bottom:10px;
+        display:block;
+      }
+
+    }
+
+  }
+
+  fieldset.actions ol {
+    margin-left:10px;
+  }
+
+}

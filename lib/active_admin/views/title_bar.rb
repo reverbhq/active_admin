@@ -3,24 +3,27 @@ module ActiveAdmin
     class TitleBar < Component
 
       def build(title, action_items)
-        super(:id => "title_bar")
+        super(:id => "title_bar", :class => "container-fluid")
         @title = title
         @action_items = action_items
-        build_titlebar_left
-        build_titlebar_right
+
+        div :class => "row-fluid" do
+          build_titlebar_left
+          build_titlebar_right
+        end
       end
 
       private
 
       def build_titlebar_left
-        div :id => "titlebar_left" do
+        div :id => "titlebar_left", :class => "span8" do
           build_breadcrumb
           build_title_tag
         end
       end
 
       def build_titlebar_right
-        div :id => "titlebar_right" do
+        div :id => "titlebar_right", :class => "span4" do
           build_action_items
         end
       end
@@ -32,10 +35,12 @@ module ActiveAdmin
           breadcrumb_links
         end
         return unless links.present? && links.is_a?(::Array)
-        span :class => "breadcrumb" do
+        ul :class => "breadcrumb" do
           links.each do |link|
-            text_node link
-            span(separator, :class => "breadcrumb_sep")
+            li do
+              text_node link
+              span(separator, :class => "divider")
+            end
           end
         end
       end

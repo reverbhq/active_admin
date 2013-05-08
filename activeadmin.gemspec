@@ -4,6 +4,7 @@ require "active_admin/version"
 
 Gem::Specification.new do |s|
   s.name          = %q{activeadmin}
+  s.license       = "MIT"
   s.version       = ActiveAdmin::VERSION
   s.platform      = Gem::Platform::RUBY
   s.homepage      = %q{http://activeadmin.info}
@@ -28,4 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency("sass", ">= 3.1.0")
   s.add_dependency("fastercsv", ">= 0")
   s.add_dependency("arbre", ">= 1.0.1")
+  s.add_dependency("bootstrap-sass", "~> 2.3")
+  s.add_dependency("formtastic-plus-bootstrap", ">= 1.1.7")
 end

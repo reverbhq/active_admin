@@ -1,4 +1,4 @@
-<div id="login">
+<div id="login" class="hero-unit">
   <%= content_tag :h2, t('active_admin.devise.reset_password.title') %>
 
   <%= active_admin_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
@@ -10,5 +10,8 @@
     end
   end %>
 
+</div>
+
+<div class="row">
   <%= render :partial => "active_admin/devise/shared/links" %>
 </div>

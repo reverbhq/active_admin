@@ -1,0 +1,33 @@
+// Typography
+$baseFontSize: 12px !default;
+
+@import "twitter_bootstrap/variables";
+@import "twitter_bootstrap/mixins/all";
+@import "bootstrap";
+
+body.active_admin {
+
+  padding-top: $navbarHeight + 20;
+  padding-bottom: 40px;
+
+  @import "active_admin/themes/twitter_bootstrap/header";
+  @import "active_admin/themes/twitter_bootstrap/components/batch_actions";
+  @import "active_admin/themes/twitter_bootstrap/components/tables";
+  @import "active_admin/themes/twitter_bootstrap/components/datepicker";
+  @import "active_admin/themes/twitter_bootstrap/components/scopes";
+  @import "active_admin/themes/twitter_bootstrap/components/status_tags";
+  @import "active_admin/themes/twitter_bootstrap/components/comments";
+  @import "active_admin/themes/twitter_bootstrap/components/index_as_grid";
+  @import "active_admin/themes/twitter_bootstrap/components/filter_forms";
+  @import "active_admin/themes/twitter_bootstrap/components/blank_slates";
+  @import "active_admin/themes/twitter_bootstrap/components/forms";
+  @import "active_admin/themes/twitter_bootstrap/pages/logged_out";
+
+  a.member_link {
+    margin-right: 7px;
+    white-space: nowrap;
+  }
+
+}
+
+@import "formtastic-plus-bootstrap";

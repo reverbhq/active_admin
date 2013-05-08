@@ -33,6 +33,10 @@ module ActiveAdmin
 
       private
 
+      def default_class_name
+        'nav'
+      end
+
       def build_menu
         menu_items.each do |item|
           build_menu_item(item)
@@ -40,24 +44,63 @@ module ActiveAdmin
       end
 
       def build_menu_item(item)
-        li :id => item.dom_id do |li_element|
-          li_element.add_class "current" if current?(item)
-          link_path = url_for_menu_item(item)
+        dom_id = case item.dom_id
+        when Proc,Symbol
+          normalize_id call_method_or_proc_on(self, item.dom_id)
+        else
+          item.dom_id
+        end
 
-          if item.children.any?
-            li_element.add_class "has_nested"
-            text_node link_to(item.label, link_path)
+        li :id => dom_id do |li_element|
+          li_element.add_class "active" if current?(item)
+
+          if item.items.any?
+            li_element.add_class "dropdown"
+
+            actual_item_link item do |label, url|
+              a :href => url, :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
+                text_node(label) +
+                b(:class => :caret)
+              end
+            end
+
             render_nested_menu(item)
           else
-            link_to item.label, link_path
+            actual_item_link item
           end
         end
+      end
+
+      def normalize_id(string)
+        string.to_s.downcase.gsub(" ", "_").gsub(/[^a-z0-9_]/, '')
+      end
+
+      def actual_item_link(item, &block)
+
+        label = case item.label
+        when Symbol
+          send item.label
+        when Proc
+          item.label.call rescue instance_exec(&item.label)
+        else
+          item.label.to_s
+        end
+
+        link_path = url_for_menu_item(item)
+        if block_given?
+          yield(label, link_path)
+        else
+          link_to(label, link_path, item.html_options)
+        end
+
       end
 
       def url_for_menu_item(menu_item)
         case menu_item.url
         when Symbol
           send(menu_item.url)
+        when Proc
+          instance_exec &menu_item.url
         when nil
           "#"
         else
@@ -66,8 +109,8 @@ module ActiveAdmin
       end
 
       def render_nested_menu(item)
-        ul do
-          displayable_items(item.children).each do |child|
+        ul :class => "dropdown-menu" do
+          displayable_items(item.items).each do |child|
             build_menu_item child
           end
         end
@@ -79,7 +122,7 @@ module ActiveAdmin
 
       # Returns true if the menu item name is @current_tab (set in controller)
       def current?(menu_item)
-        assigns[:current_tab] == menu_item || menu_item.children.include?(assigns[:current_tab])
+        assigns[:current_tab] == menu_item || menu_item.items.include?(assigns[:current_tab])
       end
 
       # Returns an Array of items to display
@@ -92,13 +135,14 @@ module ActiveAdmin
       # Returns true if the item should be displayed
       def display_item?(item)
         return false unless call_method_or_proc_on(self, item.display_if_block)
-        return false if (!item.url || item.url == "#") && !displayable_children?(item)
+        return true if (item.url.nil? or item.url == '#') && item.items.empty?
+        return false if (item.url.nil? or item.url == '#') && !displayable_children?(item)
         true
       end
 
       # Returns true if the item has any children that should be displayed
       def displayable_children?(item)
-        !item.children.find{|child| display_item?(child) }.nil?
+        !item.items.find{|child| display_item?(child) }.nil?
       end
     end
 

@@ -1,0 +1,16 @@
+#login.hero-unit
+  %h2= title "#{render_or_call_method_or_proc_on(self, active_admin_application.site_title)} #{t('active_admin.devise.login.title')}"
+  - scope = Devise::Mapping.find_scope!(resource_name)
+  = semantic_form_for resource, :as => resource_name, :url => send(:"#{scope}_session_path"), :html => { :id => :session_new} do |f|
+    = f.inputs do
+      - Devise.authentication_keys.each do |key| 
+        = f.input key, :wrapper_html => { :class => "span5 control-wrapping" }
+      = f.input :password, :wrapper_html => { :class => "span5 control-wrapping" }
+      .clearfix
+      = f.input :remember_me, :as => :boolean, :if => false, :wrapper_html => { :class => "span5 control-wrapping" }
+      .clearfix
+    = f.actions do
+      = f.action :submit, label: "Login", :button_html => { :class => "btn btn-success btn-large" }
+
+.row
+  = render 'active_admin/devise/shared/links'
